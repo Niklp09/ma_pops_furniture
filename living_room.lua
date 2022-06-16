@@ -34,42 +34,6 @@ minetest.register_node('ma_pops_furniture:c_'..material, {
 })
 end
 
-local end_table = { --name, material, invimg
-{'Stone End Table', 'cobble'},
-{'Wood End Table', 'wood'},
-{'Acacia Wood End Table', 'acacia_wood'},
-{'Aspen Wood End Table', 'aspen_wood'},
-{'Pine Wood End Table', 'pine_wood'},
-{'Jungle Wood End Table', 'junglewood'}
-}
-
-for i in ipairs (end_table) do
-	local name = end_table[i][1]
-	local material = end_table[i][2]
-	local invimg = end_table[i][3]
-
-minetest.register_node('ma_pops_furniture:end_table_'..material, {
-	description = name,
-	drawtype = 'nodebox',
-	tiles = {'default_'..material..'.png'},
-	groups = {choppy=2, oddly_breakably_by_hand=2, furniture=1, flammable=1},
-	paramtype = 'light',
-	paramtype2 = 'facedir',
-	sounds = moditems.WOOD_SOUNDS,
-	node_box = {
-       type = "fixed",
-       fixed = {
-            {-0.5, -0.5, -0.5, -0.4, 0.5, -0.4},
-           {-0.5, -0.5, 0.5, -0.4, 0.5, 0.4},
-           {0.5, -0.5, -0.5, 0.4, 0.5, -0.4},
-           {0.5, -0.5, 0.5, 0.4, 0.5, 0.4},
-           {0.5, 0.4, 0.5, -0.5, 0.5, -0.5},
-           {0.5, -0.3, 0.5, -0.5, -0.2, -0.5},
-       },
-   }
-})
-end
-
 local unit_table = { --name, material
 {'Wood Entertainment Unit', 'wood'},
 {'Acacia Wood Entertainment Unit', 'acacia_wood'},

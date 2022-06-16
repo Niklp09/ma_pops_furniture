@@ -1,45 +1,3 @@
-minetest.register_node('ma_pops_furniture:fireplace', {
-	description = 'Fireplace',
-	drawtype = 'mesh',
-	mesh = 'FM_fireplace_off.obj',
-	tiles = {{name='default_brick.png'},{name='xpanes_bar.png'}},
-	groups = {cracky=2, oddly_breakable_by_hand=6, furniture=1},
-	paramtype = 'light',
-	paramtype2 = 'facedir',
-	sounds = moditems.STONE_SOUNDS,
-	on_construct = function(pos)
-			local meta = minetest.env:get_meta(pos)
-			local inv = meta:get_inventory()
-			inv:set_size('fuel', 1)
-			inv:set_size('main', 8*4)
-			meta:set_string('formspec', ma_pops_furniture.fireplace_formspec)
-			meta:set_string('infotext', 'Fireplace')
-		end,
-	can_dig = function(pos,player)
-		local meta = minetest.get_meta(pos);
-		local inv = meta:get_inventory()
-		return inv:is_empty('fuel')
-	end,
-})
-
-minetest.register_node('ma_pops_furniture:fireplace_on', {
-	description = 'Fireplace',
-	drawtype = 'mesh',
-	mesh = 'FM_fireplace_on.obj',
-	tiles = {{name='default_brick.png'},{name='xpanes_bar.png'},{name='default_tree.png'},{name='fire_basic_flame_animated.png', animation={type='vertical_frames', aspect_w=16, aspect_h=16, length=1}}},
-	groups = {cracky=2, oddly_breakable_by_hand=3, furniture=1, not_in_creative_inventory=1},
-	light_source = 14,
-	paramtype = 'light',
-	paramtype2 = 'facedir',
-	drops = 'ma_pops_furniture:fireplace',
-	sounds = moditems.STONE_SOUNDS,
-	can_dig = function(pos,player)
-		local meta = minetest.get_meta(pos);
-		local inv = meta:get_inventory()
-		return inv:is_empty('fuel')
-	end,
-})
-
 local c_table = { --name, material, invimg
 {'Stone Coffee Table', 'cobble'},
 {'Wood Coffee Table', 'wood'},
@@ -61,16 +19,6 @@ minetest.register_node('ma_pops_furniture:c_'..material, {
 	groups = {choppy=2, oddly_breakably_by_hand=2, furniture=1, flammable=1},
 	paramtype = 'light',
 	paramtype2 = 'facedir',
-	on_rightclick = function (pos, node, player, itemstack, pointed_thing)
-     for _, obj in ipairs (minetest.get_connected_players())  do
-        local item = obj:get_wielded_item():get_name()
-        if item == 'ma_pops_furniture:c_'..material then
-            node.name = 'ma_pops_furniture:end_table_'..material
-               minetest.set_node(pos, node)
-        else
-        end
-    end
-end,
 	sounds = moditems.WOOD_SOUNDS,
 	node_box = {
        type = "fixed",
@@ -172,64 +120,6 @@ minetest.register_node("ma_pops_furniture:e_u_"..material, {
 })
 end
 
-minetest.register_node('ma_pops_furniture:vcr_on', {
-	description= "VCR",
-	tiles = {
-		"default_coal_block.png",
-		"default_coal_block.png",
-		"default_coal_block.png",
-		"default_coal_block.png",
-		"default_coal_block.png",
-		"default_coal_block.png^mp_vcr_on.png"
-	},
-	drawtype= "nodebox",
-	paramtype= "light",
-	paramtype2 = "facedir",
-	drop = 'ma_pops_furniture:vcr_off',
-	sounds = moditems.WOOD_SOUNDS,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, not_in_creative_inventory=1, furniture = 1},
-	node_box= {
-		type= "fixed",
-		fixed= {
-			{-0.375, -0.5, -0.25, 0.375, -0.4375, 0.25},
-			{-0.4375, -0.4375, -0.3125, 0.4375, -0.25, 0.3125},
-		},
-	},
-	on_rightclick = function (pos, node, puncher)
-		node.name = "ma_pops_furniture:vcr_off"
-		minetest.set_node(pos, node)
-	end,
-})
-
-minetest.register_node('ma_pops_furniture:vcr_off', {
-	description= "VCR",
-	tiles = {
-		"default_coal_block.png",
-		"default_coal_block.png",
-		"default_coal_block.png",
-		"default_coal_block.png",
-		"default_coal_block.png",
-		"default_coal_block.png^mp_vcr_off.png"
-	},
-	drawtype= "nodebox",
-	paramtype= "light",
-	paramtype2 = "facedir",
-	drop = 'ma_pops_furniture:vcr_off',
-	sounds = moditems.WOOD_SOUNDS,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, furniture = 1},
-	node_box= {
-		type= "fixed",
-		fixed= {
-			{-0.375, -0.5, -0.25, 0.375, -0.4375, 0.25},
-			{-0.4375, -0.4375, -0.3125, 0.4375, -0.25, 0.3125},
-		},
-	},
-	on_rightclick = function (pos, node, puncher)
-		node.name = "ma_pops_furniture:vcr_on"
-		minetest.set_node(pos, node)
-	end,
-})
-
 local chair2_table = { --name, color, colorize(hex or color name:intensity(1-255))
 {'Black', 'black', 'black:225'},
 {'Blue', 'blue', 'blue:225'},
@@ -265,11 +155,6 @@ minetest.register_node("ma_pops_furniture:chair2_"..color, {
     groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, furniture = 1, fall_damage_add_percent=-80, bouncy=80},
 	sounds = {wood = {name="furn_bouncy", gain=0.8}},
     can_dig = ma_pops_furniture.sit_dig,
-	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		pos.y = pos.y + 0  -- Sitting position
-		ma_pops_furniture.sit(pos, node, clicker, pointed_thing)
-		return itemstack
-	end,
     node_box = {
         type = "fixed",
         fixed = {
@@ -347,7 +232,6 @@ minetest.register_node("ma_pops_furniture:chair2_"..color, {
             node.name = "ma_pops_furniture:chair2_brown"
                minetest.set_node(pos, node)
         else
-         ma_pops_furniture.sit(pos, node, clicker)
                       end
                      end
                     end

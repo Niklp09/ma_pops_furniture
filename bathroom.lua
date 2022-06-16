@@ -49,69 +49,6 @@ minetest.register_node("ma_pops_furniture:toilet_paper_roll_dispenser", {
    }
 })
 
-minetest.register_node('ma_pops_furniture:toilet_open', {
-	description = 'Toilet',
-	drawtype = 'mesh',
-	mesh = 'FM_toilet_open.obj',
-	tiles = {{name='default_coral_skeleton.png'},{name='default_wood.png'}},
-	groups = {choppy=2, oddly_breakably_by_hand=2, furniture=1, not_in_creative_inventory=1},
-	--inventory_image = 'fm_chair_stone.png',
-	paramtype = 'light',
-	paramtype2 = 'facedir',
-	drop = 'ma_pops_furniture:toilet_close',
-	sounds = moditems.WOOD_SOUNDS,
-	selection_box = {
-		type = 'fixed',
-		fixed = {
-			{-.35, -.5, -.35, .35, 0, .5}, -- Right, Bottom, Back, Left, Top, Front
-			{-.35, 0, .2, .35, .5, .5},
-			}
-		},
-	collision_box = {
-		fixed = {
-			{-.35, -.5, -.35, .35, 0, .5}, -- Right, Bottom, Back, Left, Top, Front
-			{-.35, 0, .2, .35, .5, .5},
-			}
-		},
-	on_rightclick = function(pos, node, clicker)
-		ma_pops_furniture.sit(pos, node, clicker)
-		end,
-	on_punch = function (pos, node, puncher)
-		node.name = "ma_pops_furniture:toilet_close"
-		minetest.set_node(pos, node)
-	end,
-})
-
-minetest.register_node('ma_pops_furniture:toilet_close', {
-	description = 'Toilet',
-	drawtype = 'mesh',
-	mesh = 'FM_toilet_close.obj',
-	tiles = {{name='default_coral_skeleton.png'},{name='default_wood.png'}},
-	groups = {choppy=2, oddly_breakably_by_hand=2, furniture=1},
-	paramtype = 'light',
-	paramtype2 = 'facedir',
-	sounds = moditems.WOOD_SOUNDS,
-	selection_box = {
-		type = 'fixed',
-		fixed = {
-			{-.35, -.5, -.35, .35, 0, .5}, -- Right, Bottom, Back, Left, Top, Front
-			{-.35, 0, .2, .35, .5, .5},
-			}
-		},
-	collision_box = {
-		fixed = {
-			{-.35, -.5, -.35, .35, 0, .5}, -- Right, Bottom, Back, Left, Top, Front
-			{-.35, 0, .2, .35, .5, .5},
-			}
-		},
-	on_rightclick = function(pos, node, clicker)
-		ma_pops_furniture.sit(pos, node, clicker)
-		end,
-	on_punch = function (pos, node, puncher)
-		node.name = "ma_pops_furniture:toilet_open"
-		minetest.set_node(pos, node)
-	end,
-})
 
 minetest.register_node("ma_pops_furniture:br_sink", {
    description = "Sink (Bathroom)",

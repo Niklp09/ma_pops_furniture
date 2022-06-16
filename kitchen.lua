@@ -1038,29 +1038,6 @@ minetest.register_node("ma_pops_furniture:oven_overhead", {
 	}
 })
 
-minetest.register_node("ma_pops_furniture:microwave", {
-   description = "Microwave",
-   tiles = {
-		"mp_mw_top.png",
-		"mp_mw_bottom.png",
-		"mp_mw_right.png",
-		"mp_mw_left.png",
-		"mp_mw_back.png",
-		"mp_mw_front.png"
-	},
-   drawtype = "nodebox",
-   paramtype = "light",
-   paramtype2 = "facedir",
-   groups = {choppy = 2, oddly_breakable_by_hand = 2, furniture = 1},
-   node_box = {
-       type = "fixed",
-       fixed = {
-           {-0.4375, -0.4375, -0.3125, 0.4375, 0.0625, 0.3125},
-			{-0.375, -0.5, -0.25, 0.375, -0.4375, 0.25}, 
-       },
-   }
-})
-
 minetest.register_node("ma_pops_furniture:coffee_maker", {
 	description = "Coffee Maker",
 	tiles = {
@@ -1112,29 +1089,6 @@ minetest.register_node("ma_pops_furniture:coffee_cup", {
 	}
 })
 
-minetest.register_node("ma_pops_furniture:toaster", {
-   description = "Toaster",
-   tiles = {
-		"mp_toas_top.png",
-		"mp_toas_bottom.png",
-		"mp_toas_right.png",
-		"mp_toas_left.png",
-		"mp_toas_back.png",
-		"mp_toas_front.png"
-	},
-   drawtype = "nodebox",
-   paramtype = "light",
-   paramtype2 = "facedir",
-   groups = {choppy = 2, oddly_breakable_by_hand = 2, furniture = 1},
-   node_box = {
-       type = "fixed",
-       fixed = {
-           {-0.375, -0.5, 0, 0.375, -0.0625, 0.3125},
-		   {-0.4375, -0.1875, 0.0625, -0.375, -0.125, 0.25},
-       },
-   }
-})
-
 minetest.register_node("ma_pops_furniture:faucet_kitchen", {
    description = "Kitchen Faucet",
    tiles = {
@@ -1157,29 +1111,6 @@ minetest.register_node("ma_pops_furniture:faucet_kitchen", {
 			{-0.0625, -0.25, 0.0625, 0.0625, -0.1875, 0.125},
 			{0.125, -0.5, 0.3125, 0.25, -0.375, 0.4375},
 			{-0.25, -0.5, 0.3125, -0.125, -0.375, 0.4375},
-       },
-   }
-})
-
-minetest.register_node("ma_pops_furniture:cutting_board", {
-   description = "Cutting Board",
-   tiles = {
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png"
-	},
-   drawtype = "nodebox",
-   paramtype = "light",
-   paramtype2 = "facedir",
-   groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-   node_box = {
-       type = "fixed",
-       fixed = {
-			{-0.4375, -0.5, -0.25, 0.25, -0.4375, 0.25},
-			{0.25, -0.5, -0.0625, 0.4375, -0.4375, 0.0625},
        },
    }
 })

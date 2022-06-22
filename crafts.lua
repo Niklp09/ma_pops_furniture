@@ -900,3 +900,12 @@ minetest.register_craft({
 	{'ma_pops_furniture:fridge_white', 'dye:'..colour}
 })
 end
+
+minetest.register_craft({
+	output = 'ma_pops_furniture:faucet_kitchen',
+	recipe = {
+	{'default:steel_ingot','default:steel_ingot','default:steel_ingot',},
+	{'default:steel_ingot','','default:steel_ingot,},
+	{'default:steel_ingot','','',},
+	}
+})
